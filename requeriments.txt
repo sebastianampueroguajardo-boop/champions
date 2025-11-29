@@ -1,5 +1,5 @@
 streamlit
 pandas
-matplotlib.pyplot
-base64
-re
+matplotlib
+numpy
+Pillow
