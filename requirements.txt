@@ -1,5 +1,5 @@
 streamlit
 pandas
-matplotlib
+matplotlib.pylot
 base64
 re
