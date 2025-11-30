@@ -110,6 +110,10 @@ with tab1:
     ax[1].bar(partidos_por_año.index, partidos_por_año.values)
     ax[1].set_title("Partidos por año")
 
+    ax[1].set_xticks(partidos_por_año.index)
+    ax[1].set_xticklabels(partidos_por_año.index, rotation=45, ha="right")
+    plt.tight_layout()
+
     st.pyplot(fig)
 
 
@@ -218,5 +222,6 @@ with tab4:
 
         st.write("### Datos de la final:")
         st.dataframe(df.tail(1), use_container_width=True)
+
 
 
