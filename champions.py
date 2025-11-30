@@ -128,22 +128,17 @@ with tab2:
 
     st.pyplot(fig_menos)
 
-
     st.subheader("Variación de goles por cada fase")
 
-   # Extraer goles
     goles = df['FT'].str.split(' ').str[0].str.split('-', expand=True).astype(int)
     df['Goles'] = goles[0] + goles[1]
 
-    # Ajustar la columna 'Fase'
     df['Fase'] = df['Stage']
     filtro = df['Stage'] == 'Knockout'
     df.loc[filtro, 'Fase'] = df.loc[filtro, 'Round'].str.split('|').str[0].str.strip()
 
-   # Agrupar
     datos = df.groupby('Fase')['Goles'].sum()
 
-    # Orden definido
     orden = ['Qualifying', 'Group', 'Round of 16', 'Quarterfinals', 'Semifinals', 'Final']
     datos = datos.reindex(orden)
 
@@ -184,6 +179,7 @@ with tab3:
     fig5, ax5 = plt.subplots(figsize=(10, 4))
     ax5.bar(conteo_paises.index, conteo_paises.values)
     ax5.set_xticklabels(conteo_paises.index, rotation=90)
+    ax5.set_title("equipos por pais")
     st.pyplot(fig5)
 
 
@@ -196,7 +192,7 @@ with tab4:
         st.write("Se muestra una vista previa del dataset (primeras 10 filas):")
         st.dataframe(df.head(10), use_container_width=True)
 
-    st.write("## 🏆 Campeón del torneo")
+    st.write("##  Campeón del torneo")
 
     if st.button("Mostrar campeón"):
 
@@ -222,4 +218,5 @@ with tab4:
 
         st.write("### Datos de la final:")
         st.dataframe(df.tail(1), use_container_width=True)
+
 
