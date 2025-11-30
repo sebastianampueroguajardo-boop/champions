@@ -164,20 +164,24 @@ with tab2:
 
     st.pyplot(fig_linea)
     
-    st.subheader("Equipos con más goles anotados en el torneo")
+    st.subheader("Equipos con más goles")
 
-    g1 = df.groupby("Team 1")["g1"].sum()
-    g2 = df.groupby("Team 2")["g2"].sum()
+    df["Team1_clean"] = df["Team 1"].str.split(" › ").str[0]
+    df["Team2_clean"] = df["Team 2"].str.split(" › ").str[0]
 
-    goles_total = g1.add(g2, fill_value=0).sort_values(ascending=False)
-   
-    top_10_goles = goles_total.head(10)
+    g1 = df.groupby("Team1_clean")["g1"].sum()
+    g2 = df.groupby("Team2_clean")["g2"].sum()
+
+    goles_total = g1.add(g2, fill_value=0).sort_values(ascending=False).head(10)
 
     fig_goles, ax_goles = plt.subplots(figsize=(10, 5))
-    ax_goles.barh(top_10_goles.index[::-1], top_10_goles.values[::-1]) 
+    ax_goles.barh(range(len(goles_total)), goles_total.values)
+
+    ax_goles.set_yticks(range(len(goles_total)))
+    ax_goles.set_yticklabels(goles_total.index)
 
     ax_goles.set_title("Top 10 equipos con más goles")
-    ax_goles.set_xlabel("Goles anotados")
+    ax_goles.set_xlabel("Goles")
 
     st.pyplot(fig_goles)
  
@@ -242,4 +246,5 @@ with tab4:
 
         st.write("### Datos de la final:")
         st.dataframe(df.tail(1), use_container_width=True)
+
 
