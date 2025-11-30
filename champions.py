@@ -238,13 +238,11 @@ with tab4:
         st.write(f"### Campeón: **{campeon}**")
 
         ruta = "barcelona_escudo.png"
-
-        try:
-            st.image(ruta, width=200)
-        except:
-            st.error("No se pudo cargar el escudo del campeón.")
-
+       
+        st.image(ruta, width=200)
+         
         st.write("### Datos de la final:")
         st.dataframe(df.tail(1), use_container_width=True)
+
 
 
