@@ -161,6 +161,7 @@ with tab2:
     top_mas = nombres.value_counts().head(10)
     ax3.bar(top_mas.index, top_mas.values)
     ax3.set_xticklabels(top_mas.index, rotation=90)
+    ax3.set_title("equipos con mas partidos jugados")
     st.pyplot(fig3)
 
 
@@ -222,6 +223,7 @@ with tab4:
 
         st.write("### Datos de la final:")
         st.dataframe(df.tail(1), use_container_width=True)
+
 
 
 
