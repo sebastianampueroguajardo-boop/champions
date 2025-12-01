@@ -101,7 +101,7 @@ tab1, tab2, tab3, tab4 = st.tabs(["Estadísticas Generales", "Goles y Equipos", 
 
 with tab1:
     st.subheader("Gráficos generales")
-    st.subheader("### en el histograma se muestra la cantidad de partidos que tuvieron cierta cantidad de goles")
+    st.subheader("en el histograma se muestra la cantidad de partidos que tuvieron cierta cantidad de goles")
 
     fig, ax = plt.subplots(1, 2, figsize=(12, 4))
     ax[0].hist(filtered["total_goals"].dropna(), bins=bins)
@@ -244,6 +244,7 @@ with tab4:
          
         st.write("### Datos de la final:")
         st.dataframe(df.tail(1), use_container_width=True)
+
 
 
 
